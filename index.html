@@ -11,8 +11,8 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">我的主页</h1>
-      <h2 class="project-tagline">梅颖大妹子，今天净捣鼓这个东西了，把这个劳动成果送给你！</h2>
+      <h1 class="project-name" onclick="showTip()">我的主页</h1>
+      <h2 id="xtt" class="project-tagline">婷婷，节日快乐，这个小礼物送给你，希望你喜欢！</h2>
     </section>
 
     <section class="main-content">
@@ -48,6 +48,17 @@
 
     </section>
 
-  
+    <script type="text/javascript">
+        var flag = 0;
+        function showTip() {
+            if (flag) {
+                flag = 0;
+                document.getElementById('xtt').style.display = '';
+            } else {
+                flag = 1;
+                document.getElementById('xtt').style.display = 'none';
+            }
+        }
+    </script>
   </body>
 </html>
