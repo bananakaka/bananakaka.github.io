@@ -12,7 +12,6 @@
   <body>
     <section class="page-header">
       <h1 class="project-name" onclick="showTip()">我的主页</h1>
-      <h2 id="xtt" class="project-tagline" style="display:none;">婷婷，节日快乐，这个小礼物送给你，希望你喜欢！</h2>
     </section>
 
     <section class="main-content">
@@ -48,17 +47,5 @@
 
     </section>
 
-    <script type="text/javascript">
-        var flag = 1;
-        function showTip() {
-            if (flag) {
-                flag = 0;
-                document.getElementById('xtt').style.display = '';
-            } else {
-                flag = 1;
-                document.getElementById('xtt').style.display = 'none';
-            }
-        }
-    </script>
   </body>
 </html>
