@@ -13,6 +13,7 @@
 #### 如何使用？
 
 jstack -help
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-help.jpg)
 
 ```shell
 jstack [-l] <pid>
@@ -41,46 +42,22 @@ jstack -m 2334
 #### 具体参数
 
 
-    -F  to force a thread dump. Use when jstack <pid> does not respond (process is hung)
-进程没有响应的时候，强制打印线程栈信息。
-
-    -m  to print both java and native frames (mixed mode)
-不仅会输出Java堆栈信息，还会输出C/C++堆栈信息（比如native方法）
-
-
+    -h or -help to print this help message
 
     -l  long listing. Prints additional information about locks
 打印额外的锁信息，在发生死锁时，用来观察锁持有情况
 
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-l.jpg)
 
+    -m  to print both java and native frames (mixed mode)
+不仅会输出Java堆栈信息，还会输出C/C++堆栈信息（比如native方法）
 
-    -h or -help to print this help message
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-m.jpg)
 
+jstack -l -m pid
 
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-l-m.jpg)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    -F  to force a thread dump. Use when jstack <pid> does not respond (process is hung)
+进程没有响应的时候，强制打印线程栈信息。
 

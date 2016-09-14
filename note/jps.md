@@ -12,6 +12,10 @@ java程序启动以后，会在`java.io.tmpdir`目录下，就是临时文件夹
 
 #### 如何使用？
 
+jps -help
+
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-help.jpg)
+
 ```shell
 jps [-q] [-mlvV] [<hostid>]
 ```
@@ -22,6 +26,8 @@ jps [-q] [-mlvV] [<hostid>]
 jps -lvm
 ```
 
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-lvm.jpg)
+
 #### 具体参数
 
 ##### hostid
@@ -31,18 +37,26 @@ jps -lvm
 ##### -l
 
     输出应用程序主类的类全名，或者是应用程序JAR文件的完整路径。
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-l.jpg)
+
 ##### -v
 
     输出传给JVM的参数。
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-v.jpg)
+
 ##### -m
 
     输出传递给main方法的参数，如果是内嵌的JVM则输出为null。
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-m.jpg)
+
 ##### -V
 
     输出通过标记的文件传递给JVM的参数（.hotspotrc文件，或者是通过参数-XX:Flags=<filename>指定的文件）。
 ##### -q
 
     只输出pid，忽略输出的类名、Jar包名以及传递给main方法的参数。
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-q.jpg)
+
 ##### -JjavaOption
 
     用于将给定的javaOption传给java应用程序加载器，例如，“-J-Xms48m”将把启动内存设置为48M。使用-J选项可以非常方便的向基于Java开发的底层虚拟机应用程序传递参数。

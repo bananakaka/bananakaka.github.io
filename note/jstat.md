@@ -14,6 +14,10 @@
 
 #### 如何使用？
 
+jstat -help
+
+
+
 ```shell
 jstat -<option> [-t][-h] <vmid> [<interval> [<count>]]
 ```
