@@ -1,6 +1,8 @@
 ### jstat命令
 
-#### 作用
+[TOC]
+
+#### jstat有什么用途？
 
 对JVM heap的使用情况进行实时的命令行统计，使用jstat我们可以对指定的JVM做如下监控
 
@@ -10,40 +12,44 @@
 - 查看新生代中Eden区及Survior区中容量及分配情况等
 
 
-#### 用法
+#### 如何使用？
 
 ```shell
 jstat -<option> [-t][-h] <vmid> [<interval> [<count>]]
 ```
 
--t
+#### 示例
+
+jps
+找到Java进程id:2334
+
+```shell
+jstat -gc -t -h 4 2334 1s
+```
+
+#### 打印参数
+
+##### -t
 
     用于在输出内容的第一列显示时间戳，这个时间戳代表的时JVM开始启动到现在的时间
-vmid
+##### vmid
 
     pid
 interval:<n>["ms"|"s"]
 
     间隔时间，单位可以是秒或者毫秒，通过指定s或ms确定，默认单位为毫秒
-count
+##### count
 
     打印次数，如果缺省则打印无数次
-
--h <lines>
+##### -h <lines>
 
     用于指定每隔几行就输出列头，如果不指定，默认是只在第一行出现列头。
--JjavaOption
+##### -JjavaOption
 
     用于将给定的javaOption传给java应用程序加载器，例如，“-J-Xms48m”将把启动内存设置为48M。
-#### 示例
+#### 具体参数
 
-jps
-找到Java进程id:2334
-jstat -gcutil -t -h 4 2334 1s
-
-option
-
-gc  用于查看JVM中堆的垃圾收集情况的统计
+##### -gc    用于查看JVM中堆的垃圾收集情况的统计
 
     S0C 新生代中Survivor space中S0当前容量的大小（KB）
     S1C 新生代中Survivor space中S1当前容量的大小（KB）
@@ -63,7 +69,7 @@ gc  用于查看JVM中堆的垃圾收集情况的统计
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gc.jpg)
 
-gccapacity  用于查看新生代、老年代及持久代的存储容量情况
+##### -gccapacity    用于查看新生代、老年代及持久代的存储容量情况
 
     NGCMN   新生代的最小容量大小（KB）
     NGCMX   新生代的最大容量大小（KB）
@@ -84,7 +90,15 @@ gccapacity  用于查看新生代、老年代及持久代的存储容量情况
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gccapacity.jpg)
 
-gcutil  用于查看新生代、老年代及持久代垃圾收集的情况
+##### -gccause    用于查看垃圾收集的统计情况
+
+这个和-gcutil选项一样，如果有发生垃圾收集，它比-gcutil会多出最后一次垃圾收集原因以及当前正在发生的垃圾收集的原因。
+
+    LGCC 最后一次垃圾收集的原因，可能为“unknown GCCause”、“System.gc()”等
+    GCC  当前垃圾收集的原因
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gccause.jpg)
+
+##### -gcutil    用于查看新生代、老年代及持久代垃圾收集的情况
 
     S0  Heap上的 Survivor space 0 区已使用空间的百分比
     S1  Heap上的 Survivor space 1 区已使用空间的百分比
@@ -95,13 +109,7 @@ gcutil  用于查看新生代、老年代及持久代垃圾收集的情况
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcutil.jpg)
 
-gccause 用于查看垃圾收集的统计情况（这个和-gcutil选项一样），如果有发生垃圾收集，它比-gcutil会多出最后一次垃圾收集原因以及当前正在发生的垃圾收集的原因。
-
-    LGCC 最后一次垃圾收集的原因，可能为“unknown GCCause”、“System.gc()”等
-    GCC  当前垃圾收集的原因
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gccause.jpg)
-
-gcnew   用于查看新生代垃圾收集的情况
+##### -gcnew    用于查看新生代垃圾收集的情况
 
     TT  Tenuring threshold，要了解这个参数，我们需要了解一点Java内存对象的结构，在Sun JVM中，（除了数组之外的）对象都有两个机器字（words）的头部。第一个字中包含这个对象的标示哈希码以及其他一些类似锁状态和等标识信息，第二个字中包含一个指向对象的类的引用，其中第二个字节就会被垃圾收集算法使用到。
     在新生代中做垃圾收集的时候，每次复制一个对象后，将增加这个对象的收集计数，当一个对象在新生代中被复制了一定次数后，该算法即判定该对象是长周期的对象，把他移动到老年代，这个阈值叫着tenuring threshold。这个阈值用于表示某个/些在执行批定次数youngGC后还活着的对象，即使此时新生的的Survior没有满，也同样被认为是长周期对象，将会被移到老年代中。
@@ -111,7 +119,7 @@ gcnew   用于查看新生代垃圾收集的情况
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcnew.jpg)
 
-gcnewcapacity   用于查看新生代的存储容量情况
+##### -gcnewcapacity    用于查看新生代的存储容量情况
 
     S0CMX   新生代中SO的最大容量大小（KB）
     S1CMX   新生代中S1的最大容量大小（KB）
@@ -120,14 +128,14 @@ gcnewcapacity   用于查看新生代的存储容量情况
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcnewcapacity.jpg)
 
-gcold   用于查看老年代及持久代发生GC的情况
+##### -gcold    用于查看老年代及持久代发生GC的情况
 
     PC、PU、OC、OU、YGC、FGC、FGCT、GCT
     完全可以用-gc代替，-gc还提供更多的信息
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcold.jpg)
 
-gcoldcapacity   用于查看老年代的容量
+##### -gcoldcapacity    用于查看老年代的容量
 
     OGCMN、OGCMX、OGC、OC、YGC、FGC
     可以用-gccapacity代替
@@ -136,7 +144,7 @@ gcoldcapacity   用于查看老年代的容量
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcoldcapacity.jpg)
 
-gcpermcapacity  用于查看持久代的容量
+##### -gcpermcapacity    用于查看持久代的容量
 
     PGCMN、PGCMX、PGC、PC、YGC、FGC
     可以用-gccapacity代替
@@ -145,7 +153,7 @@ gcpermcapacity  用于查看持久代的容量
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcpermcapacity.jpg)
 
-class   用于查看类加载情况的统计
+##### -class    用于查看类加载情况的统计
 
     Loaded  加载了的类的数量
     Bytes   加载了的类的大小，单为Kb
@@ -155,7 +163,7 @@ class   用于查看类加载情况的统计
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-class.jpg)
 
-compiler    用于查看HotSpot中即时编译器编译情况的统计
+##### -compiler    用于查看HotSpot中即时编译器编译情况的统计
 
     Compiled    编译任务执行的次数
     Failed  编译任务执行失败的次数
@@ -166,7 +174,7 @@ compiler    用于查看HotSpot中即时编译器编译情况的统计
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-compiler.jpg)
 
-printcompilation    HotSpot编译方法的统计
+##### -printcompilation    HotSpot编译方法的统计
 
     Compiled    编译任务执行的次数
     Size    方法的字节码所占的字节数
@@ -174,6 +182,4 @@ printcompilation    HotSpot编译方法的统计
     Method  指定确定被编译方法的类名及方法名，类名中使名“/”而不是“.”做为命名分隔符，方法名是被指定的类中的方法，这两个字段的格式是由HotSpot中的“-XX:+PrintComplation”选项确定的。
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-printcompilation.jpg)
-
-
 
