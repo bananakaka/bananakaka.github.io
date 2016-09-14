@@ -61,3 +61,28 @@ jstack -l -m pid
     -F  to force a thread dump. Use when jstack <pid> does not respond (process is hung)
 进程没有响应的时候，强制打印线程栈信息。
 
+#### 配合top、printf命令
+
+jps找到java进程
+
+29767
+
+```shell
+top -Hp 29767
+```
+
+找到CPU负载最高的线程id
+
+21742
+
+计算线程id对应的十六进制数，因为jstack打印的线程id是十六进制
+
+```shell
+printf "%x\n" 21742
+54ee
+```
+
+用jstack排查该线程的调用堆栈
+
+jstack -l 29767 | fgrep -30 '54ee'
+
