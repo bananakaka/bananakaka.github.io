@@ -16,7 +16,7 @@
 
 jstat -help
 
-
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-help.jpg)
 
 ```shell
 jstat -<option> [-t][-h] <vmid> [<interval> [<count>]]
