@@ -1,8 +1,10 @@
+[TOC]
+
 ### jstack命令
 
-#### 功能
+#### jstack有什么用途？
 
-查看Java线程的调用堆栈，生成JVM当前时刻的线程快照(JVM内每一个线程正在执行的方法堆栈的集合)可以用来分析线程问题（如死锁、锁争用、CPU负载高）、内存问题(OOM、内存泄漏)。
+打印java进程的快照，查看所有java线程的状态和调用堆栈以及Monitor状态，生成当前时刻JVM的线程快照(JVM内每一个线程正在执行的方法堆栈的集合)可以用来分析线程问题（如死锁、锁争用、CPU负载高）、内存问题(OOM、内存泄漏)。在实际应用中，往往仅靠一次的线程dump不足以确认问题，建议产生三次以上的dump信息，如果都是同样的问题，方可确定原因。
 
 #### 为什么要生成线程快照？
 
@@ -40,28 +42,19 @@ jstack -m 2334
 ```
 
 #### 具体参数
-
-
-    -h or -help to print this help message
-
-    -l  long listing. Prints additional information about locks
-打印额外的锁信息，在发生死锁时，用来观察锁持有情况
+##### -l  打印额外的锁信息，发生死锁时，用来观察锁持有情况
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-l.jpg)
 
-    -m  to print both java and native frames (mixed mode)
-不仅会输出Java堆栈信息，还会输出C/C++堆栈信息（比如native方法）
-
+##### -m  不仅会输出Java堆栈信息，还会输出C/C++堆栈信息（比如native方法）
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-m.jpg)
 
-jstack -l -m pid
+##### jstack -l -m pid
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-l-m.jpg)
 
-    -F  to force a thread dump. Use when jstack <pid> does not respond (process is hung)
-进程没有响应的时候，强制打印线程栈信息。
-
-#### 配合top、printf命令
+##### -F  进程没有响应(hung住)的时候，强制打印线程栈信息
+#### 实战：配合top、printf命令
 
 jps找到java进程
 
@@ -82,7 +75,27 @@ printf "%x\n" 21742
 54ee
 ```
 
-用jstack排查该线程的调用堆栈
+用jstack排查该线程的调用堆栈，查看线程快照
 
 jstack -l 29767 | fgrep -30 '54ee'
+
+#### 额外说明
+
+##### Monitor
+
+Monitor是 Java中实现线程之间的互斥与协作的主要手段，它可以看成是Class或者对象的锁。每一个Class和对象有且仅有一个Monitor。下面这个图，描述了线程和Monitor之间关系，以及线程的状态转换图：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
