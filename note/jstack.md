@@ -85,17 +85,31 @@ jstack -l 29767 | fgrep -30 '54ee'
 
 Monitor是 Java中实现线程之间的互斥与协作的主要手段，它可以看成是Class或者对象的锁。每一个Class和对象有且仅有一个Monitor。下面这个图，描述了线程和Monitor之间关系，以及线程的状态转换图：
 
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/java-monitor.bmp)
+
+拥有锁的线程称为"active thread"，其他线程称为"wait thread"，这些"wait thread"分别在两个队列"entry set"和"wait set"里等候。
+
+- 当线程申请进入临界区时，会进入"entry set"队列，线程状态是"waiting for monitor entry"
+- "wait set"队列的线程状态是"in Object.wait()"。
 
 
+##### 方法调用修饰
 
+表示线程在方法调用时，额外重要的操作。
 
+- locked <地址> 目标：使用synchronized申请对象锁成功，Monitor的拥有者。对象锁可重入。
+- waiting to lock <地址> 目标：使用synchronized申请对象锁未成功，在entry set等待。在调用栈顶出现，线程状态为Blocked。
 
+- waiting on <地址> 目标：使用synchronized申请对象锁成功后，释放锁在wait set等待。在调用栈顶出现，线程状态为WAITING或TIMED_WATING。
 
+- parking to wait for <地址> 目标：park是基本的线程阻塞原语，不通过Monitor在对象上阻塞。随concurrent包出现的新的机制，和synchronized体系不同。
 
+##### 线程状态产生的原因
 
-
-
-
-
+- runnable:状态一般为RUNNABLE。
+- in Object.wait():wait set等待，状态为WAITING或TIMED_WAITING。
+- waiting for monitor entry:entry set等待，状态为BLOCKED。
+- waiting on condition:wait set等待、被park。
+- sleeping:休眠的线程，调用了Thread.sleep()。
 
 
