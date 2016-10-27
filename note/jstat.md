@@ -1,16 +1,19 @@
+[TOC]
+
 ### jstat命令
 
-[TOC]
+#### 官方使用文档
+
+http://docs.oracle.com/javase/7/docs/technotes/tools/share/jstat.html
 
 #### jstat有什么用途？
 
-对JVM heap的使用情况进行实时的命令行统计，使用jstat我们可以对指定的JVM做如下监控
+监控JVM，对JVM heap的使用情况进行实时统计，从不同维度查看heap的使用情况。可以对JVM做如下监控：
 
 - 类的加载及卸载情况
 - 查看新生代、老年代及持久代的容量及使用情况
 - 查看新生代、老年代及持久代的垃圾收集情况，包括垃圾回收(young gc,full gc)的次数及垃圾回收所占用的时间
 - 查看新生代中Eden区及Survior区中容量及分配情况等
-
 
 #### 如何使用？
 
@@ -20,6 +23,7 @@ jstat -help
 
 ```shell
 jstat -<option> [-t][-h] <vmid> [<interval> [<count>]]
+jstat [ generalOption | outputOptions vmid [interval[s|ms] [count]] ]
 ```
 
 #### 示例
@@ -45,10 +49,10 @@ interval:<n>["ms"|"s"]
 ##### count
 
     打印次数，如果缺省则打印无数次
-##### -h <lines>
+##### -h  n
 
     用于指定每隔几行就输出列头，如果不指定，默认是只在第一行出现列头。
-##### -JjavaOption
+##### -JOption
 
     用于将给定的javaOption传给java应用程序加载器，例如，“-J-Xms48m”将把启动内存设置为48M。
 #### 具体参数
@@ -187,3 +191,8 @@ interval:<n>["ms"|"s"]
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-printcompilation.jpg)
 
+
+
+#### 注意
+
+建议不要编写脚本来解析jstat的输出，因为格式可能会在将来的版本中更改。 

@@ -1,14 +1,10 @@
-[TOC]
-
 ### jps命令
 
-#### 官方使用文档
-
-http://docs.oracle.com/javase/7/docs/technotes/tools/share/jps.html
+[TOC]
 
 #### jps有什么用途？
 
-打印有权限访问的HotSpot JVM的java进程信息(pid、进程启动路径及启动参数)，与unix上的ps类似，只不过jps仅查找当前用户的Java进程，而不是当前系统中的所有Java进程，可以把jps理解为ps的一个子集。
+查看基于HotSpot的JVM的java进程信息，与unix上的ps类似，只不过jps是用来显示java进程，可以把jps理解为ps的一个子集。jps仅查找当前用户的Java进程，而不是当前系统中的所有进程。
 
 #### 实现原理
 
@@ -40,28 +36,28 @@ jps -lvm
     如果指定了hostid，它就会显示指定hostid上面的java进程，不过这需要远程机器开启了jstatd服务(jvm监控服务，采用rmi协议，默认端口1099)
 ##### -l
 
-    打印Java应用主类的类全名，或JAR文件入口类的类全名。
+    输出应用程序主类的类全名，或者是应用程序JAR文件的完整路径。
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-l.jpg)
 
 ##### -v
 
-    打印传给JVM的参数。
+    输出传给JVM的参数。
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-v.jpg)
 
 ##### -m
 
-    打印传递给main方法的参数，如果是内嵌的JVM则输出为null。
+    输出传递给main方法的参数，如果是内嵌的JVM则输出为null。
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-m.jpg)
 
 ##### -V
 
-    打印通过标记的文件传递给JVM的参数（.hotspotrc文件，或者是通过参数-XX:Flags=<filename>指定的文件）。
+    输出通过标记的文件传递给JVM的参数（.hotspotrc文件，或者是通过参数-XX:Flags=<filename>指定的文件）。
 ##### -q
 
-    只打印pid，忽略输出的类名、Jar包名以及传递给main方法的参数。
+    只输出pid，忽略输出的类名、Jar包名以及传递给main方法的参数。
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-q.jpg)
 
-##### -JOption
+##### -JjavaOption
 
     用于将给定的javaOption传给java应用程序加载器，例如，“-J-Xms48m”将把启动内存设置为48M。使用-J选项可以非常方便的向基于Java开发的底层虚拟机应用程序传递参数。
 #### 远程jps
