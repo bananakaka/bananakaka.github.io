@@ -20,6 +20,8 @@ Use hprof.
 
 #### 如何使用？
 
+![https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jhat-help.jpg]()
+
 ```
 Usage:  jhat [-stack <bool>][-refs ] [-port <port>][-baseline ] [-debug <int>][-version] [-h|-help] <file>
 

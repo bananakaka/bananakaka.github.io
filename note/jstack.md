@@ -24,10 +24,7 @@ jstack -help
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-help.jpg)
 
 ```shell
-jstack [-l] <pid>
-    (to connect to running process)
-jstack -F [-m] [-l] <pid>
-    (to connect to a hung process)
+注释：
 jstack [-m] [-l] <executable> <core>
     (to connect to a core file)
     executable:可执行的core dump文件，JVM crash生成的core文件。
