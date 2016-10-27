@@ -64,11 +64,12 @@ All boolean options default to "true"
 ##### -baseline baseline-dump-file
 
 指定dump基线。
-Objects in both heap dumps with the same object ID will be marked as not being "new". Other objects will be marked as "new". This is useful while comparing two different heap dumps.
+在两个dump文件中有相同的对象id和类名的对象，不会标识为"new"，其他对象会标识为"new"。
+在比较两个dump文件时，非常有用。
 
 ##### -debug int
 
-指定debug级别。0代表不输出debug信息，更复杂的模式(more verbose modes)，值越大。
+指定debug级别。0代表不输出debug信息，1代表debug hprof文件的解析过程，2代表不开启server的情况debug hprof文件的解析过程。
 
 ##### -Joption
 
