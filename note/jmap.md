@@ -22,30 +22,30 @@ option选项只能是以下其中一个
 ##### no option
 
     打印shared object mappings(共享对象映射)
-![https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-no-option.jpg]()
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-no-option.jpg)
 
 ##### -heap
 
     打印堆内存配置和各个代的容量、使用、空闲情况，输出信息比jstat友好
-![https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-heap.jpg]()
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-heap.jpg)
 
 ##### -histo[:live]
 
     打印堆内存对象的直方图，包括类名(内部类会带有一个"*"前缀)，对象数量，对象占用总空间大小。指定":live"的话，则只统计存活的对象，会触发full gc。
 
-![https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-histo.jpg]()
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-histo.jpg)
 
 ##### -permstat
 
     打印堆内存中class loader维度的永久代统计信息。主要打印：class loader地址、加载类的数量、总字节数、parent_loader地址、是否存活、class loader类型。最后打印出intern的string对象的数量和总字节数。
 
-![https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-permstat.jpg]()
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-permstat.jpg)
 
 ##### -finalizerinfo
 
     打印正等待回收的对象信息。
 
-![https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-finalizerinfo.jpg]()
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-finalizerinfo.jpg)
 
 -dump:<dump-options>
 
@@ -54,7 +54,7 @@ option选项只能是以下其中一个
     format=b     二进制格式
     file=<file>  dump heap to <file>
     举例: jmap -dump:live,format=b,file=heap.hprof <pid>
-![https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-dump.jpg]()
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jmap-dump.jpg)
 
 ##### -F
 

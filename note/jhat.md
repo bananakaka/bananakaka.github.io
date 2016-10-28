@@ -22,7 +22,7 @@ Use hprof.
 
 ##### jhat-h
 
-![https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jhat-help.jpg]()
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jhat-help.jpg)
 
 ##### -stack false/true
 
