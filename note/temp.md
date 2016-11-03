@@ -83,5 +83,5 @@ jps有个地方很不好，似乎只能显示当前用户的java进程，要显�
 
 1. 磁盘读写、目录权限问题。若该用户没有权限写/tmp目录或是磁盘已满，则无法创建/tmp/hsperfdata_userName/pid文件。或该文件已经生成，但用户没有读权限
 2. 临时文件丢失，被删除或是定期清理。对于linux机器，一般都会存在定时任务对临时文件夹进行清理，导致/tmp目录被清空。常用的可能定时删除临时目录的工具为crontab、redhat的tmpwatch、ubuntu的tmpreaper等等。这个导致的现象可能会是这样，用jconsole监控进程，发现在某一时段后进程仍然存在，但是却没有监控信息了。
-3. java进程信息文件存储地址被设置，不在/tmp目录下。上面我们在介绍时说默认会在/tmp/hsperfdata_{userName}目录保存进程信息，但由于以上1、2所述原因，可能导致该文件无法生成或是丢失，所以java启动时提供了参数(-Djava.io.tmpdir)，而jps、jconsole都只会从/tmp目录读取，而无法从设置后的目录读物信息。
+3. java进程信息文件存储地址被设置，不在/tmp目录下。上面我们在介绍时说默认会在/tmp/hsperfdata_{userName}目录保存进程信息，但由于以上1、2所述原因，可能导致该文件无法生成或是丢失，所以java启动时提供了参数(-Djava.io.tmpdir)，而jps、jconsole都只会从/tmp目录读取，而无法从设置后的目录读物信
 
