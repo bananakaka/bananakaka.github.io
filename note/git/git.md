@@ -44,6 +44,10 @@ git stash drop
 
 
 
+git push时免用户名、密码
+
+git remote set-url origin git@github.com:tinyivc/tinyivc.github.io.git
+
 
 
 
