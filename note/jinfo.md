@@ -14,7 +14,7 @@ http://docs.oracle.com/javase/7/docs/technotes/tools/share/jinfo.html
 
 ##### jinfo -h
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jinfo-help.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jinfo-help.jpg)
 
 option选项只能是以下其中一个
 
@@ -22,7 +22,7 @@ option选项只能是以下其中一个
 
 打印指定jvm启动参数的值
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jinfo-flag-name.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jinfo-flag-name.jpg)
 
 ##### -flag [+|-]<name>
 
@@ -36,19 +36,19 @@ option选项只能是以下其中一个
 
 打印所有的jvm启动参数。
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jinfo-flags.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jinfo-flags.jpg)
 
 ##### -sysprops
 
 打印所有的Java系统属性。
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jinfo-sysprops.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jinfo-sysprops.jpg)
 
 ##### no option
 
 jvm启动参数和系统属性都会打印。
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jinfo-no-option.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jinfo-no-option.jpg)
 
 
 

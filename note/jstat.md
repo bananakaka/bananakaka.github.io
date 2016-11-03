@@ -19,7 +19,7 @@ http://docs.oracle.com/javase/7/docs/technotes/tools/share/jstat.html
 
 jstat -help
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-help.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-help.jpg)
 
 ```shell
 jstat -<option> [-t][-h] <vmid> [<interval> [<count>]]
@@ -75,7 +75,7 @@ interval:<n>["ms"|"s"]
     FGCT  从应用程序启动到采样时 Full GC 所用的时间(秒)
     GCT   T从应用程序启动到采样时用于垃圾回收的总时间(单位秒)，它的值等于YGC+FGC
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gc.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-gc.jpg)
 
 ##### -gccapacity    用于查看新生代、老年代及持久代的存储容量情况
 
@@ -96,7 +96,7 @@ interval:<n>["ms"|"s"]
     YGC 从应用程序启动到采样时发生 Young GC 的次数
     FGC 从应用程序启动到采样时发生 Full GC 的次数
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gccapacity.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-gccapacity.jpg)
 
 ##### -gccause    用于查看垃圾收集的统计情况
 
@@ -104,7 +104,7 @@ interval:<n>["ms"|"s"]
 
     LGCC 最后一次垃圾收集的原因，可能为“unknown GCCause”、“System.gc()”等
     GCC  当前垃圾收集的原因
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gccause.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-gccause.jpg)
 
 ##### -gcutil    用于查看新生代、老年代及持久代垃圾收集的情况
 
@@ -115,7 +115,7 @@ interval:<n>["ms"|"s"]
     P   Perm space 区已使用空间的百分比
     还有其他指标像：YGC、YGCT、FGC、FGCT、GCT，可以用-gc查看
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcutil.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-gcutil.jpg)
 
 ##### -gcnew    用于查看新生代垃圾收集的情况
 
@@ -125,7 +125,7 @@ interval:<n>["ms"|"s"]
     DSS Desired survivor size (KB)
     还有其他指标像：S0C、S1C、S0U、S1U、EC、EU、YGC、YGCT，所以如果不是为了查看TT、MTT、DSS，推荐用-gc，因为这些指标-gc也有，还可以查看更多java heap信息
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcnew.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-gcnew.jpg)
 
 ##### -gcnewcapacity    用于查看新生代的存储容量情况
 
@@ -134,14 +134,14 @@ interval:<n>["ms"|"s"]
     ECMX    新生代中Eden的最大容量大小（KB）
     还有其他指标像：NGCMN、NGCMX、NGC、S0C、S1C、EC、YGC、FGC，所以如果不是为了查看TT、MTT、DSS，推荐用-gccapacity，因为这些指标-gccapacity也有，还可以查看更多heap capacity信息
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcnewcapacity.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-gcnewcapacity.jpg)
 
 ##### -gcold    用于查看老年代及持久代发生GC的情况
 
     PC、PU、OC、OU、YGC、FGC、FGCT、GCT
     完全可以用-gc代替，-gc还提供更多的信息
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcold.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-gcold.jpg)
 
 ##### -gcoldcapacity    用于查看老年代的容量
 
@@ -150,7 +150,7 @@ interval:<n>["ms"|"s"]
     FGCT、GCT
     可以用-gc代替
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcoldcapacity.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-gcoldcapacity.jpg)
 
 ##### -gcpermcapacity    用于查看持久代的容量
 
@@ -159,7 +159,7 @@ interval:<n>["ms"|"s"]
     FGCT、GCT
     可以用-gc代替
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-gcpermcapacity.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-gcpermcapacity.jpg)
 
 ##### -class    用于查看类加载情况的统计
 
@@ -169,7 +169,7 @@ interval:<n>["ms"|"s"]
     Bytes   卸载了的类的大小，单为Kb
     Time    花在类的加载及卸载的时间
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-class.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-class.jpg)
 
 ##### -compiler    用于查看HotSpot中即时编译器编译情况的统计
 
@@ -180,7 +180,7 @@ interval:<n>["ms"|"s"]
     FailedType  最后一次编译失败的编译类型
     FailedMethod    最后一次编译失败的类名及方法名
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-compiler.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-compiler.jpg)
 
 ##### -printcompilation    HotSpot编译方法的统计
 
@@ -189,10 +189,10 @@ interval:<n>["ms"|"s"]
     Type    编译类型
     Method  指定确定被编译方法的类名及方法名，类名中使名“/”而不是“.”做为命名分隔符，方法名是被指定的类中的方法，这两个字段的格式是由HotSpot中的“-XX:+PrintComplation”选项确定的。
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstat-printcompilation.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstat-printcompilation.jpg)
 
 
 
 #### 注意
 
-建议不要编写脚本来解析jstat的输出，因为格式可能会在将来的版本中更改。 
+建议不要编写脚本来解析jstat的输出，因为格式可能会在将来的版本中更改。

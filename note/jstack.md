@@ -21,7 +21,7 @@ http://docs.oracle.com/javase/7/docs/technotes/tools/share/jstack.html
 #### 如何使用？
 
 jstack -help
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-help.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstack-help.jpg)
 
 ```shell
 注释：
@@ -47,14 +47,14 @@ jstack -m 2334
 #### 具体参数
 ##### -l  打印额外的锁信息，发生死锁时，用来观察锁持有情况
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-l.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstack-l.jpg)
 
 ##### -m  不仅会输出Java栈信息，还会输出C/C++栈信息（比如native方法）
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-m.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstack-m.jpg)
 
 ##### jstack -l -m pid
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jstack-l-m.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jstack-l-m.jpg)
 
 ##### -F  进程没有响应(hung住)的时候，强制打印线程栈信息
 #### 实战：配合top、printf命令
@@ -88,7 +88,7 @@ jstack -l 29767 | fgrep -30 '54ee'
 
 Monitor是 Java中实现线程之间的互斥与协作的主要手段，它可以看成是Class或者对象的锁。每一个Class/对象有且仅有一个Monitor。下面这个图，描述了线程和Monitor之间关系，以及线程的**状态转换图**：
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/java-monitor.bmp)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/java-monitor.bmp)
 
 拥有锁的线程称为"active thread"，其他线程称为"wait thread"，这些"wait thread"分别在两个队列"entry set"和"wait set"里等候。
 

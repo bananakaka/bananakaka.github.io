@@ -18,7 +18,7 @@ java程序启动以后，会在`java.io.tmpdir`目录下，就是临时文件夹
 
 jps -help
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-help.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jps-help.jpg)
 
 ```shell
 jps [-q] [-mlvV] [<hostid>]
@@ -30,7 +30,7 @@ jps [-q] [-mlvV] [<hostid>]
 jps -lvm
 ```
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-lvm.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jps-lvm.jpg)
 
 #### 具体参数
 
@@ -41,17 +41,17 @@ jps -lvm
 ##### -l
 
     打印Java应用主类的类全名，或JAR文件入口类的类全名。
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-l.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jps-l.jpg)
 
 ##### -v
 
     打印传给JVM的参数。
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-v.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jps-v.jpg)
 
 ##### -m
 
     打印传递给main方法的参数，如果是内嵌的JVM则输出为null。
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-m.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jps-m.jpg)
 
 ##### -V
 
@@ -59,7 +59,7 @@ jps -lvm
 ##### -q
 
     只打印pid，忽略输出的类名、Jar包名以及传递给main方法的参数。
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jps-q.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jps-q.jpg)
 
 ##### -JOption
 
