@@ -1,10 +1,10 @@
 #### 三次握手
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/three-shake-hands.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/web/tcp/three-shake-hands.jpg)
 
 #### 四次握手
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/four-shake-hands.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/web/tcp/four-shake-hands.jpg)
 
 #### tcp四层模型
 
@@ -13,7 +13,7 @@
 - **网络层 (Network)**：网络层协议由一系列协议组成，包括IP(v4,v6)、ICMP、ARP、RARP、OSPF等。
 - **链路层 (Link)**：又称为物理数据网络接口层，负责报文传输。
 
-![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/tcp-layer-model.jpg)
+![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/web/tcp/tcp-layer-model.jpg)
 
 #### Socket
 

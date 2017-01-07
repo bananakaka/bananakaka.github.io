@@ -63,7 +63,7 @@ option选项只能是以下其中一个
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jmap-finalizerinfo.jpg)
 
-##### -dump:<dump-options>
+##### -dump:\<dump-options>
 
     把堆内存dump为hprof二进制格式文件。
     live         仅dump存活对象; 如果不指定此参数，则导出堆内存中所有对象，不管死的活的。

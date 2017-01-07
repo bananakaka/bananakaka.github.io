@@ -18,17 +18,17 @@ http://docs.oracle.com/javase/7/docs/technotes/tools/share/jinfo.html
 
 option选项只能是以下其中一个
 
-##### -flag <name>
+##### -flag \<name>
 
 打印指定jvm启动参数的值
 
 ![](https://raw.githubusercontent.com/tinyivc/tinyivc.github.io/master/img/jdk-tool/jinfo-flag-name.jpg)
 
-##### -flag [+|-]<name>
+##### -flag [+|-]\<name>
 
 启用或禁用指定的jvm启动参数
 
-##### -flag <name>=<value>
+##### -flag \<name>=\<value>
 
 给指定的jvm启动参数赋值
 

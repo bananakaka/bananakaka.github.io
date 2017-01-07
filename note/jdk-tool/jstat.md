@@ -43,7 +43,7 @@ jstat -gc -t -h 4 2334 1s
 ##### vmid
 
     pid
-interval:<n>["ms"|"s"]
+interval:\<n>["ms"|"s"]
 
     间隔时间，单位可以是秒或者毫秒，通过指定s或ms确定，默认单位为毫秒
 ##### count
@@ -196,3 +196,37 @@ interval:<n>["ms"|"s"]
 #### 注意
 
 建议不要编写脚本来解析jstat的输出，因为格式可能会在将来的版本中更改。
+
+
+
+#### 原理
+
+##### 怎么输出格式化内容的？
+
+其实在tools.jar里存在一个文件叫做jstat_options，这个文件里定义了上面的每种类型的输出结果，比如说gcutil。
+
+##### jstat如何获取到这些变量的值？
+
+变量值显然是从目标进程里获取来的，但是是怎样来的？其实是从一个共享文件里来的，这个文件叫PerfData，主要指的是/tmp/hsperfdata_{user}目录下，Java进程号的文件名。
+
+##### 文件创建
+
+这个文件是否存在取决于两个参数，一个UsePerfData，另一个是PerfDisableSharedMem，如果设置了-XX:+PerfDisableSharedMem或者-XX:-UsePerfData，那这个文件是不会存在的。默认情况下PerfDisableSharedMem是关闭的，UsePerfData是打开的
+
+UsePerfData：如果关闭这个参数，那么jvm启动过程中perf memory都不会被创建，默认情况是是打开的。
+PerfDisableSharedMem：该参数决定了perf memory是不是可以被共享，也就是说不管这个参数有没有设置，jvm在启动的时候都会分配一块内存来存PerfData，只是其他进程是否可见的问题，如果设置了这个参数，说明不能被共享，此时其他进程将访问不了该内存，这样一来，譬如我们jps，jstat等都无法工作。默认这个参数是关闭的，也就是默认支持共享的方式。
+
+##### 文件更新
+
+由于这个文件是通过mmap的方式映射到了内存里，而jstat是直接通过DirectByteBuffer的方式从PerfData里读取的，所以只要内存里的值变了，那我们从jstat看到的值就会发生变化，内存里的值什么时候变，取决于-XX:PerfDataSamplingInterval这个参数，默认是50ms，也就是说50ms更新一次值，基本上可以认为是实时的了。
+
+##### 文件删除
+
+那这个文件什么时候删除？正常情况下当进程退出的时候会自动删除，但是某些极端情况下，比如kill -9，这种信号jvm是不能捕获的，所以导致进程直接退出了，而没有做一些收尾性的工作，这个时候你会发现进程虽然没了，但是这个文件其实还是存在的，那这个文件是不是就一直留着，只能等待人为的删除呢？jvm里考虑到了这种情况，会在当前用户接下来的任何一个java进程(比如说我们执行jps)起来的时候会去做一个判断，看/tmp/hsperfdata_{user}\下的进程是不是还存在，如果不存在了就直接删除该文件，判断是否存在的具体操作其实就是发一个kill -0的信号看是否有异常。
+
+PerfData其他相关VM参数
+-XX:PerfDataMemorySize：指定/tmp/hsperfdata_{user}\下perfData文件的大小，默认是32KB，如果用户设置了该值，jvm里会自动和os的page size对齐，比如linux下pagesize默认是4KB，那如果你设置了31KB，那自动会分配32KB
+-XX:+PerfDataSaveToFile：是否在进程退出的时候讲PerfData里的数据保存到一个特定的文件里，文件路径由下面的参数指定，否则就在当前目录下
+-XX:PerfDataSaveFile：指定保存PerfData文件的路径
+-XX:PerfDataSamplingInterval：指定perfData的采样间隔，默认是50ms，基本算实时采样了。
+
