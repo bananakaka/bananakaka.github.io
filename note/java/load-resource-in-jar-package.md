@@ -64,3 +64,6 @@ AppClassLoader加载应用的jar
 ```java
 FileOutputStream out = new FileOutputStream(new File (Test.class.getResource("path").toURI()));
 ```
+大沙发斯蒂芬a熬到
+
+阿道夫

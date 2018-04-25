@@ -54,15 +54,5 @@ between m and n m<=col<=n
 
 
 
-到底要用utf8mb4\_general_ci 还是utf8mb4_unicode_ci 呢？
-建议使用： utf8mb4_unicode_ci
-这两种排序规则都是为UTF-8字符编码。
-utf8mb4\_unicode_ci 使用标准的Unicode Collation Algorithm(UCA)，utf8mb4\_general_ci 比utf8mb4\_unicode_ci 速度要来得快，但是utf8mb4\_unicode_ci 比utf8mb4_general_ci 要来得精确。
-像是"ß"，若是以utf8mb4\_general_ci 运作，会转成"s"，而utf8mb4_unicode_ci 则是会转成"ss"。
-
-
-
-
-
 
 
