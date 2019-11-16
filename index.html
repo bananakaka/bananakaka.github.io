@@ -1,13 +1,36 @@
+
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
     <title>特别的网站给特别的你</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="http://tinyivc.github.io/stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="http://tinyivc.github.io/stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="http://tinyivc.github.io/stylesheets/github-light.css" media="screen">
+    <script>
+        function calc() {
+            var gujia = parseFloat(document.getElementById("gujia").value);
+            var ttm = parseFloat(document.getElementById("ttm").value);
+            var guxi = parseFloat(document.getElementById("guxi").value);
+            var guozhai = parseFloat(document.getElementById("guozhai").value);
+            console.log(gujia);
+            console.log(ttm);
+            console.log(guxi);
+            console.log(guozhai);
+
+            var x = 15 * gujia / ttm
+            console.log(x);
+
+            var y = guxi / guozhai
+            console.log(y);
+
+            var result = x < y ? x : y;
+
+            document.getElementById("haojiage").value = result.toFixed(2);
+        }
+    </script>
   </head>
   <body>
     <section class="page-header">
@@ -16,7 +39,21 @@
 
     <section class="main-content">
       <h3>
-<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
+<a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>攀登者好价格计算器</h3>
+
+<div id="d1">
+股价：<input id="gujia"/>
+TTM市盈率：<input id="ttm"/>
+</div>
+<br/>
+<div id="d2">
+    股息：<input id="guxi" />
+    十年期国债收益率：<input id="guozhai" />
+</div>
+<br />
+<div>
+<button onclick="calc()">计算好价格</button><input id="haojiage" />
+</div>
 
 <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here <a href="https://guides.github.com/features/mastering-markdown/">using GitHub Flavored Markdown</a>, select a template crafted by a designer, and publish. After your page is generated, you can check out the new <code>gh-pages</code> branch locally. If you’re using GitHub Desktop, simply sync your repository and you’ll see the new branch.</p>
 
