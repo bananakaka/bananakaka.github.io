@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小区价格图表</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        canvas {
+            max-width: 600px;
+            margin: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">小区价格图表</h1>
+    <canvas id="priceChart"></canvas>
+
+    <script>
+        // 数据来源
+        const data = {
+            labels: ["丽水园", "龙城花园北二区", "佳运园三期", "云趣园二区"],
+            prices: [5500, 5200, 5600, 3750]
+        };
+
+        // 使用 Chart.js 绘制柱状图
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        const priceChart = new Chart(ctx, {
+            type: 'bar', // 图表类型：柱状图
+            data: {
+                labels: data.labels,
+                datasets: [{
+                    label: '小区价格（元）',
+                    data: data.prices,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: '价格 (元)'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: '小区名称'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top'
+                    },
+                    tooltip: {
+                        enabled: true
+                    }
+                },
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+
+        /**
+         * 设计思路：
+         * 1. 使用 Chart.js 库绘制柱状图，展示各小区的价格。
+         * 2. 数据通过 labels 和 prices 数组提供，便于扩展。
+         * 3. 配置图表样式和交互功能，如工具提示、图例等。
+         * 
+         * 使用说明：
+         * - 确保网络可以访问 CDN 提供的 Chart.js 资源。
+         * - 可以根据需要修改数据或调整样式。
+         */
+    </script>
+</body>
+</html>
