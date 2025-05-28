@@ -3,674 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>学习，是需要动脑的！</title>
-    <!-- TailwindCSS 3.0+ CDN -->
+    <title>六年级毕业纪念册</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- 自定义配置 -->
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            50: '#f0f9ff',
-                            100: '#e0f2fe',
-                            200: '#bae6fd',
-                            300: '#7dd3fc',
-                            400: '#38bdf8',
-                            500: '#0ea5e9',
-                            600: '#0284c7',
-                            700: '#0369a1',
-                            800: '#075985',
-                            900: '#0c4a6e',
-                        },
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                }
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        * {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* 动画类 */
+        .fade-in {
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-        .fade-in {
-            animation: fadeIn 0.5s ease-in-out forwards;
-            opacity: 0;
+        
+        .gradient-text {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .section-container {
-            scroll-margin-top: 80px;
-        }
-
+        
+        /* 卡片悬停效果 */
         .card-hover {
             transition: all 0.3s ease;
         }
-
+        
         .card-hover:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 按钮效果 */
+        .btn-gradient {
+            background: var(--primary-gradient);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* 背景装饰 */
+        .bg-decoration {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        
+        .decoration-1 {
+            background: #667eea;
+            top: -150px;
+            right: -150px;
+        }
+        
+        .decoration-2 {
+            background: #f093fb;
+            bottom: -150px;
+            left: -150px;
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 深色模式支持 */
+        .dark .gradient-text {
+            filter: brightness(1.2);
+        }
+        
+        /* 响应式字体大小 */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.5rem; }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans">
-    <!-- 主题切换按钮 -->
-    <div class="fixed top-5 right-5 z-50">
-        <button id="themeToggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 shadow-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-all">
-            <span class="material-icons block dark:hidden">dark_mode</span>
-            <span class="material-icons hidden dark:block">light_mode</span>
-        </button>
-    </div>
-
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
     <!-- 导航栏 -->
-    <nav class="sticky top-0 bg-white dark:bg-gray-800 shadow-md z-40">
+    <nav class="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">psychology</span>
-                    <h1 class="text-xl font-bold">学习，是需要动脑的！</h1>
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap text-2xl gradient-text mr-3"></i>
+                    <span class="text-xl font-bold text-gray-800 dark:text-white">毕业纪念册</span>
                 </div>
-                <div class="hidden md:block">
-                    <div class="ml-10 flex items-baseline space-x-4">
-                        <a href="#problems" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">学习问题</a>
-                        <a href="#qualities" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">学霸品质</a>
-                        <a href="#methods" class="px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">学习方法</a>
-                    </div>
-                </div>
-                <div class="md:hidden">
-                    <button id="mobileMenuButton" class="p-2 rounded-md text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 focus:outline-none">
-                        <span class="material-icons">menu</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- 移动端菜单 -->
-        <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800 shadow-lg pb-3 transition-all">
-            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#problems" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">学习问题</a>
-                <a href="#qualities" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">学霸品质</a>
-                <a href="#methods" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">学习方法</a>
+                <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                    <i class="fas fa-sun text-yellow-500 dark:hidden"></i>
+                    <i class="fas fa-moon text-blue-400 hidden dark:block"></i>
+                </button>
             </div>
         </div>
     </nav>
-
-    <!-- 主内容 -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <!-- 介绍 -->
-        <section class="mb-16">
-            <div class="text-center mb-10 fade-in" style="animation-delay: 0.1s;">
-                <h1 class="text-4xl font-bold mb-4 text-primary-700 dark:text-primary-400">学习，是需要动脑的！</h1>
-                <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">在知识的海洋中遨游，需要智慧的引领和勤奋的坚持。本文总结了学习中常见的问题、优秀学习者的品质以及高效的学习方法，希望对你有所帮助。</p>
-            </div>
-
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-6 mb-8 fade-in" style="animation-delay: 0.2s;">
-                <h2 class="text-2xl font-bold mb-4 flex items-center">
-                    <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">list</span>
-                    目录
-                </h2>
-                <div class="grid md:grid-cols-3 gap-4">
-                    <a href="#problems" class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-primary-50 dark:hover:bg-gray-600 transition-colors flex items-center card-hover">
-                        <span class="material-icons text-primary-600 dark:text-primary-400 mr-3">report_problem</span>
-                        <span>目前，学习当中存在的问题</span>
-                    </a>
-                    <a href="#qualities" class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-primary-50 dark:hover:bg-gray-600 transition-colors flex items-center card-hover">
-                        <span class="material-icons text-primary-600 dark:text-primary-400 mr-3">star</span>
-                        <span>学霸，具有哪些优良的品质？</span>
-                    </a>
-                    <a href="#methods" class="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-primary-50 dark:hover:bg-gray-600 transition-colors flex items-center card-hover">
-                        <span class="material-icons text-primary-600 dark:text-primary-400 mr-3">psychology</span>
-                        <span>六个高效学习方法，教给你！</span>
-                    </a>
+    
+    <!-- 主内容区 -->
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div class="bg-decoration decoration-1"></div>
+            <div class="bg-decoration decoration-2"></div>
+            
+            <div class="relative z-10 text-center px-4 fade-in">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6">
+                    <span class="gradient-text">六年级毕业纪念册</span>
+                </h1>
+                <p class="text-2xl md:text-3xl text-gray-600 dark:text-gray-300 mb-8">今夏，我们的毕业季</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <button onclick="scrollToSection('youth')" class="btn-gradient text-white px-8 py-3 rounded-full font-medium">
+                        <i class="fas fa-heart mr-2"></i>青春回忆
+                    </button>
+                    <button onclick="scrollToSection('dreams')" class="bg-gray-800 dark:bg-gray-700 text-white px-8 py-3 rounded-full font-medium hover:bg-gray-700 dark:hover:bg-gray-600 transition-all">
+                        <i class="fas fa-star mr-2"></i>梦想未来
+                    </button>
                 </div>
+            </div>
+            
+            <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+                <i class="fas fa-chevron-down text-2xl text-gray-400"></i>
             </div>
         </section>
-
-        <!-- 第一节：学习中存在的问题 -->
-        <section id="problems" class="mb-16 section-container">
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
-                <div class="bg-primary-600 dark:bg-primary-700 p-4">
-                    <h2 class="text-2xl font-bold text-white flex items-center">
-                        <span class="material-icons mr-2">report_problem</span>
-                        第一节：目前，学习当中存在的问题
-                    </h2>
-                </div>
-
-                <div class="p-6">
-                    <div class="mb-8 fade-in" style="animation-delay: 0.1s;">
-                        <h3 class="text-xl font-bold mb-4 text-primary-700 dark:text-primary-400">你是不是有这样的现象/困惑？</h3>
-                        <ul class="space-y-2 ml-6 list-disc text-gray-700 dark:text-gray-300">
-                            <li>原来的学习方法挺有效，现在反而不那么灵了···</li>
-                            <li>上课一直在跟老师"互动"，下课后脑袋依然空空···</li>
-                            <li>改错题时，抄题10分钟，改错2分钟···</li>
-                            <li>出成绩后，不敢看成绩/找老师分析原因···</li>
-                            <li>遇见难题后，自己冥思苦想依然解决不了···</li>
-                            <li>对老师所讲的内容一知半解，做题时漏洞百出···</li>
-                        </ul>
+        
+        <!-- 青春章节 -->
+        <section id="youth" class="py-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">我们的青春年华</h2>
+                
+                <div class="grid md:grid-cols-2 gap-8 mb-16">
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-users text-purple-600 dark:text-purple-300"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">匆匆相逢</h3>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            尽管是匆匆地相逢，匆匆地离别，但短促的生命历程中我们拥有着永恒。相信今日的友情是明日最好的回忆。
+                        </p>
                     </div>
-
-                    <!-- 问题卡片 -->
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <!-- 问题一 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.2s;">
-                            <div class="flex items-start mb-3">
-                                <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_one</span>
-                                <h4 class="text-lg font-bold">刻舟求剑</h4>
+                    
+                    <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 card-hover">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-palette text-pink-600 dark:text-pink-300"></i>
                             </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>原来的学习方法挺有效，现在反而不那么灵了···</p>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">建议：</span>原来的学习方法，不一定适合现在；这个学科的学习方法，不一定适合那个学科；我们要及时调整自己的学习策略和方法，保证自身学习的有效性。</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>虽然主观上努力，但不了解情况变化，不知变通而采取错误方法。</p>
+                            <h3 class="text-2xl font-bold text-gray-800 dark:text-white">彩色梦幻</h3>
                         </div>
-
-                        <!-- 问题二 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.3s;">
-                            <div class="flex items-start mb-3">
-                                <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_two</span>
-                                <h4 class="text-lg font-bold">滥竽充数</h4>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>上课一直在跟老师"互动"，下课后脑袋依然空空···</p>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">建议：</span>上课回答问题时，不要人云亦云。对老师的问题，要主动思考。只有这样的"互动"，才有意义。</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>没有真才实学的人混在内行人之中，或以次充好。</p>
-                        </div>
-
-                        <!-- 问题三 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.4s;">
-                            <div class="flex items-start mb-3">
-                                <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_3</span>
-                                <h4 class="text-lg font-bold">买椟还珠</h4>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>改错题时，抄题10分钟，改错2分钟···</p>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">建议：</span>改错本，它的重点是在改错的过程中。老师希望大家在改错的过程中对错题有所思考，而不是停留在抄题的层面！</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>取舍不当，抓了次要的，丢了主要的。</p>
-                        </div>
-
-                        <!-- 问题四 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.5s;">
-                            <div class="flex items-start mb-3">
-                                <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_4</span>
-                                <h4 class="text-lg font-bold">掩耳盗铃</h4>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>出成绩后，不敢看成绩/找老师分析原因···</p>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">建议：</span>不懂就问，不要自己欺骗自己。遇见问题，就解决问题。解决一个问题，就少一个问题，就会成长一点点。</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>自己欺骗自己，明明是掩盖不住的事情偏要想法子掩盖。</p>
-                        </div>
-
-                        <!-- 问题五 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.6s;">
-                            <div class="flex items-start mb-3">
-                                <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_5</span>
-                                <h4 class="text-lg font-bold">闭门造车</h4>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>遇见难题后，自己冥思苦想依然解决不了···</p>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">建议：</span>遇见难以攻克的问题，该求助的就要求助。可能别人的"三言两语"就能解决这个问题。</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>不考虑客观实际情况，只凭主观想法办事。</p>
-                        </div>
-
-                        <!-- 问题六 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.7s;">
-                            <div class="flex items-start mb-3">
-                                <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_6</span>
-                                <h4 class="text-lg font-bold">囫囵吞枣</h4>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>对老师所讲的内容一知半解，做题时漏洞百出···</p>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">建议：</span>听懂不等于学会；学会不等于会用；会用不等于得分！</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>读书等不经消化理解，笼统接受。</p>
-                        </div>
-                    </div>
-
-                    <!-- 小结 -->
-                    <div class="mt-8 bg-primary-50 dark:bg-gray-600 p-5 rounded-lg fade-in" style="animation-delay: 0.8s;">
-                        <h3 class="text-xl font-bold mb-3 text-primary-700 dark:text-primary-300 flex items-center">
-                            <span class="material-icons mr-2">summarize</span>
-                            小结
-                        </h3>
-                        <p class="text-gray-700 dark:text-gray-300">《写作是门手艺》上说，在现实的田野里，你会经历很多不如意，但是就如升级打怪一样，你成长的速度取决于遇到问题的难度。</p>
-                        <p class="text-gray-700 dark:text-gray-300 mt-2">换句话说，问题决定了一个人的能力提升速度，遇到的问题越大，当解决它时候，能力提升的也就越快。</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 第二节：学霸的优良品质 -->
-        <section id="qualities" class="mb-16 section-container">
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
-                <div class="bg-primary-600 dark:bg-primary-700 p-4">
-                    <h2 class="text-2xl font-bold text-white flex items-center">
-                        <span class="material-icons mr-2">star</span>
-                        第二节：学霸，具有哪些优良的品质？
-                    </h2>
-                </div>
-
-                <div class="p-6">
-                    <!-- 特质卡片 -->
-                    <div class="grid md:grid-cols-2 gap-6">
-                        <!-- 特质一 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.1s;">
-                            <div class="flex justify-between items-start mb-3">
-                                <div class="flex items-center">
-                                    <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_one</span>
-                                    <h4 class="text-lg font-bold">亡羊补牢</h4>
-                                </div>
-                                <span class="bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-200 text-sm font-medium py-1 px-2 rounded">反思意识</span>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>发现自己的学习状态不对或下滑时，及时反思并做出调整！</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>在出现问题后能够及时采取措施进行补救，以防止继续受到更大的损失。</p>
-                        </div>
-
-                        <!-- 特质二 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.2s;">
-                            <div class="flex justify-between items-start mb-3">
-                                <div class="flex items-center">
-                                    <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_two</span>
-                                    <h4 class="text-lg font-bold">铁杵磨针</h4>
-                                </div>
-                                <span class="bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-200 text-sm font-medium py-1 px-2 rounded">坚持意识</span>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>每天坚持早到位、问问题、改错、复盘···</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>只要有决心，肯下功夫，多么难的事也能做成功。</p>
-                        </div>
-
-                        <!-- 特质三 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.3s;">
-                            <div class="flex justify-between items-start mb-3">
-                                <div class="flex items-center">
-                                    <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_3</span>
-                                    <h4 class="text-lg font-bold">闻鸡起舞</h4>
-                                </div>
-                                <span class="bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-200 text-sm font-medium py-1 px-2 rounded">惜时意识</span>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>时间如海绵里的水，挤一挤总会用的。向候操要十分钟，向课间要十分钟，向午晚休要十分钟··</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>惜时如金，及时奋发。</p>
-                        </div>
-
-                        <!-- 特质四 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.4s;">
-                            <div class="flex justify-between items-start mb-3">
-                                <div class="flex items-center">
-                                    <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_4</span>
-                                    <h4 class="text-lg font-bold">悬梁刺股</h4>
-                                </div>
-                                <span class="bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-200 text-sm font-medium py-1 px-2 rounded">吃苦意识</span>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>没有谁能轻轻松松取得好成绩。所有成绩好的学霸，在背后肯定下了苦功夫。</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>学习是需要下苦功夫的。</p>
-                        </div>
-
-                        <!-- 特质五 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.5s;">
-                            <div class="flex justify-between items-start mb-3">
-                                <div class="flex items-center">
-                                    <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_5</span>
-                                    <h4 class="text-lg font-bold">废寝忘食</h4>
-                                </div>
-                                <span class="bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-200 text-sm font-medium py-1 px-2 rounded">专注意识</span>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>人的精力是有限资源，有舍才有得。我们要尽可能多的把时间和精力放到学习上。</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>非常专心，把全副精力和心思用在某件事情上。</p>
-                        </div>
-
-                        <!-- 特质六 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.6s;">
-                            <div class="flex justify-between items-start mb-3">
-                                <div class="flex items-center">
-                                    <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">looks_6</span>
-                                    <h4 class="text-lg font-bold">不耻下问</h4>
-                                </div>
-                                <span class="bg-primary-100 dark:bg-primary-800 text-primary-800 dark:text-primary-200 text-sm font-medium py-1 px-2 rounded">好问意识</span>
-                            </div>
-                            <p class="text-gray-600 dark:text-gray-300 mb-2"><span class="font-medium">表现：</span>要多找老师问问题，当天的问题当天解决，不要拖到明天，更不要拖到遗忘！</p>
-                            <p class="text-gray-500 dark:text-gray-400 italic"><span class="font-medium">寓意：</span>原意是不把向学问、地位等不如自己的人请教当成可耻的事。形容谦虚、好学。</p>
-                        </div>
-                    </div>
-
-                    <!-- 小结 -->
-                    <div class="mt-8 bg-primary-50 dark:bg-gray-600 p-5 rounded-lg fade-in" style="animation-delay: 0.7s;">
-                        <h3 class="text-xl font-bold mb-3 text-primary-700 dark:text-primary-300 flex items-center">
-                            <span class="material-icons mr-2">summarize</span>
-                            小结
-                        </h3>
-                        <p class="text-gray-700 dark:text-gray-300 italic">
-                            埋头苦干是第一，<br>
-                            发白才知智叟呆。<br>
-                            勤能补拙是良训，<br>
-                            一分辛苦一分才。<br>
-                            ——华罗庚
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">
+                            轻狂的少年，向往广袤的天空与浪漫；经历了坎坷，学会了珍惜，成熟的你我学会有梦想就不言放弃。
                         </p>
                     </div>
                 </div>
+                
+                <!-- 校园回忆 -->
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 dark:from-gray-800 dark:to-gray-700 rounded-3xl p-8 md:p-12">
+                    <h3 class="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-white">校园足迹</h3>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-white dark:bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                                <i class="fas fa-tree text-3xl text-green-500"></i>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">林荫小道</h4>
+                            <p class="text-gray-600 dark:text-gray-300">林荫下我们留下过足迹</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-white dark:bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                                <i class="fas fa-utensils text-3xl text-orange-500"></i>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">食堂时光</h4>
+                            <p class="text-gray-600 dark:text-gray-300">食堂里我们大快朵颐</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-20 h-20 bg-white dark:bg-gray-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                                <i class="fas fa-book text-3xl text-blue-500"></i>
+                            </div>
+                            <h4 class="text-xl font-semibold mb-2 text-gray-800 dark:text-white">自习室</h4>
+                            <p class="text-gray-600 dark:text-gray-300">自习室里的身影依然清晰</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
-
-        <!-- 第三节：六个高效学习方法 -->
-        <section id="methods" class="mb-16 section-container">
-            <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
-                <div class="bg-primary-600 dark:bg-primary-700 p-4">
-                    <h2 class="text-2xl font-bold text-white flex items-center">
-                        <span class="material-icons mr-2">psychology</span>
-                        第三节：六个高效学习方法，教给你！
-                    </h2>
-                </div>
-
-                <div class="p-6">
-                    <!-- 方法卡片 -->
-                    <div class="space-y-6">
-                        <!-- 方法一 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.1s;">
-                            <div class="flex items-start mb-3">
-                                <div class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">1</div>
-                                <h4 class="text-lg font-bold">建立思维导图</h4>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-3">我们在吸收信息时，很多时候是杂乱无章的，可以通过清晰的框架来筛选信息，避免无效信息的干扰。</p>
-                            <p class="text-gray-700 dark:text-gray-300">三个步骤来做：<span class="font-medium text-primary-600 dark:text-primary-400">搭建框架</span>、<span class="font-medium text-primary-600 dark:text-primary-400">优化框架</span>、<span class="font-medium text-primary-600 dark:text-primary-400">填充框架</span>。建立适配自己的思维导图，让散乱的知识点各归其所，运用时就可以按"图"索骥，快速调取。</p>
-
-                            <!-- 思维导图示例 -->
-                            <div class="mt-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-                                <h5 class="text-center text-primary-700 dark:text-primary-400 font-medium mb-3">思维导图示例</h5>
-                                <div class="flex justify-center">
-                                    <div class="relative w-full max-w-2xl h-64 bg-gray-100 dark:bg-gray-700 rounded-lg overflow-hidden">
-                                        <!-- 示意性思维导图 SVG -->
-                                        <svg viewBox="0 0 800 400" class="w-full h-full">
-                                            <!-- 中心主题 -->
-                                            <ellipse cx="400" cy="200" rx="80" ry="40" fill="#0ea5e9" class="dark:fill-primary-600" />
-                                            <text x="400" y="205" text-anchor="middle" fill="white" font-weight="bold">核心主题</text>
-
-                                            <!-- 分支1 -->
-                                            <path d="M470 180 L600 100" stroke="#38bdf8" stroke-width="2" class="dark:stroke-primary-500" />
-                                            <ellipse cx="650" cy="100" rx="50" ry="25" fill="#7dd3fc" class="dark:fill-primary-800" />
-                                            <text x="650" y="105" text-anchor="middle" fill="#075985" class="dark:fill-white" font-weight="bold">分支1</text>
-
-                                            <!-- 分支2 -->
-                                            <path d="M470 220 L600 300" stroke="#38bdf8" stroke-width="2" class="dark:stroke-primary-500" />
-                                            <ellipse cx="650" cy="300" rx="50" ry="25" fill="#7dd3fc" class="dark:fill-primary-800" />
-                                            <text x="650" y="305" text-anchor="middle" fill="#075985" class="dark:fill-white" font-weight="bold">分支2</text>
-
-                                            <!-- 分支3 -->
-                                            <path d="M330 180 L200 100" stroke="#38bdf8" stroke-width="2" class="dark:stroke-primary-500" />
-                                            <ellipse cx="150" cy="100" rx="50" ry="25" fill="#7dd3fc" class="dark:fill-primary-800" />
-                                            <text x="150" y="105" text-anchor="middle" fill="#075985" class="dark:fill-white" font-weight="bold">分支3</text>
-
-                                            <!-- 分支4 -->
-                                            <path d="M330 220 L200 300" stroke="#38bdf8" stroke-width="2" class="dark:stroke-primary-500" />
-                                            <ellipse cx="150" cy="300" rx="50" ry="25" fill="#7dd3fc" class="dark:fill-primary-800" />
-                                            <text x="150" y="305" text-anchor="middle" fill="#075985" class="dark:fill-white" font-weight="bold">分支4</text>
-                                        </svg>
-                                    </div>
-                                </div>
+        
+        <!-- 梦想与未来 -->
+        <section id="dreams" class="py-20 px-4 bg-gray-100 dark:bg-gray-800">
+            <div class="max-w-6xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-16">
+                    <span class="gradient-text">OUR DREAM</span>
+                </h2>
+                
+                <div class="relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-3xl blur-3xl opacity-20"></div>
+                    <div class="relative bg-white dark:bg-gray-900 rounded-3xl p-8 md:p-12 shadow-2xl">
+                        <div class="text-center mb-12">
+                            <i class="fas fa-rocket text-6xl gradient-text mb-6"></i>
+                            <h3 class="text-3xl font-bold mb-6 text-gray-800 dark:text-white">向前走，我的朋友</h3>
+                            <div class="space-y-4 text-lg text-gray-600 dark:text-gray-300">
+                                <p>那里是一片秋，等你去摘</p>
+                                <p>那里是希望的田野，等你去耕耘</p>
+                                <p>前进吧，我的朋友</p>
+                                <p>紧握给予的命运，把握美好的未来</p>
                             </div>
                         </div>
-
-                        <!-- 方法二 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.2s;">
-                            <div class="flex items-start mb-3">
-                                <div class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">2</div>
-                                <h4 class="text-lg font-bold">打破学习错觉</h4>
+                        
+                        <div class="grid md:grid-cols-3 gap-6 mt-12">
+                            <div class="text-center">
+                                <div class="text-4xl mb-2">🌟</div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">梦想</h4>
                             </div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-3">有些知识我们自认为学到了，是错将"熟悉"当作"知道"，如果合上书做个简单的自我检测，瞬间就会忘掉三四成。</p>
-                            <p class="text-gray-700 dark:text-gray-300 mb-3"><span class="font-medium">如何避免这种错觉呢？</span></p>
-                            <p class="text-gray-700 dark:text-gray-300">行动学习理论认为，人要掌握一门技能，需要用<span class="font-medium text-primary-600 dark:text-primary-400">10%的时间学习知识和信息</span>，用<span class="font-medium text-primary-600 dark:text-primary-400">70%的时间练习和实践</span>，还要用<span class="font-medium text-primary-600 dark:text-primary-400">20%的时间与人沟通和讨论</span>。这个原则被称为"<span class="font-medium">721法则</span>"。</p>
-                            <p class="text-gray-700 dark:text-gray-300 mt-3">如果听到了自己原来不知道的知识内容，不要觉得自己学会了，这最多只是接收信息。这时候还缺少实践、练习和探讨。知行合一，才能切实掌握。</p>
-                        </div>
-
-                        <!-- 方法三 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.3s;">
-                            <div class="flex items-start mb-3">
-                                <div class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">3</div>
-                                <h4 class="text-lg font-bold">用自己的语言叙述</h4>
+                            <div class="text-center">
+                                <div class="text-4xl mb-2">💪</div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">坚持</h4>
                             </div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-3">初学的知识大多属于"短时记忆"。要想记得牢记得久，一定要经过充分的、有一定深度的加工，把"短时记忆"转化为"长时记忆"。</p>
-                            <p class="text-gray-700 dark:text-gray-300 mb-3"><span class="font-medium">那么，"加工"是什么意思呢？</span>是指，对知识点加以自己的处理，关键在于，用自己的语言叙述出来。把需要记忆的知识点，用自己的语言逻辑和语言习惯连"点"成"线"，串成有逻辑的内容。</p>
-                            <p class="text-gray-700 dark:text-gray-300">当你能用自己的语言，准确复述出需要记住的内容，那么祝贺你，这些知识无形中已经转化成你的知识经验。</p>
-
-                            <!-- 学习金字塔图 -->
-                            <div class="mt-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-                                <h5 class="text-center text-primary-700 dark:text-primary-400 font-medium mb-3">学习金字塔/费曼学习法</h5>
-                                <div class="flex justify-center">
-                                    <div class="relative w-full max-w-md h-64">
-                                        <!-- 学习金字塔 SVG -->
-                                        <svg viewBox="0 0 400 300" class="w-full h-full">
-                                            <!-- 金字塔结构 -->
-                                            <polygon points="200,20 50,280 350,280" fill="none" stroke="#0ea5e9" stroke-width="2" class="dark:stroke-primary-400" />
-
-                                            <!-- 横线分层 -->
-                                            <line x1="85" y1="220" x2="315" y2="220" stroke="#0ea5e9" stroke-width="1" class="dark:stroke-primary-400" />
-                                            <line x1="125" y1="160" x2="275" y2="160" stroke="#0ea5e9" stroke-width="1" class="dark:stroke-primary-400" />
-                                            <line x1="162.5" y1="100" x2="237.5" y2="100" stroke="#0ea5e9" stroke-width="1" class="dark:stroke-primary-400" />
-
-                                            <!-- 文字标签 -->
-                                            <text x="200" y="260" text-anchor="middle" fill="#0c4a6e" class="dark:fill-primary-200" font-size="14">被动学习 (5% 记忆保留率)</text>
-                                            <text x="200" y="200" text-anchor="middle" fill="#0c4a6e" class="dark:fill-primary-200" font-size="14">参与式学习 (50% 记忆保留率)</text>
-                                            <text x="200" y="140" text-anchor="middle" fill="#0c4a6e" class="dark:fill-primary-200" font-size="14">主动实践 (75% 记忆保留率)</text>
-                                            <text x="200" y="70" text-anchor="middle" fill="#0c4a6e" class="dark:fill-primary-200" font-size="14">教授他人 (90% 记忆保留率)</text>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 方法四 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.4s;">
-                            <div class="flex items-start mb-3">
-                                <div class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">4</div>
-                                <h4 class="text-lg font-bold">记忆有技巧</h4>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-3">记忆大段文字的诀窍，先选取最核心的那句话进行记忆，巩固扎实后再去记细节。</p>
-                            <p class="text-gray-700 dark:text-gray-300 mb-3">书中的知识点过于翔实、细节丰盈、内容量大，是为了帮助理解。如果一味贪多、舍本逐末地背诵，很容易导致当时全背下来了，可考试时一紧张，忘记了前后顺序，然后像多米诺骨牌效应一般，一崩全崩。</p>
-                            <p class="text-gray-700 dark:text-gray-300">要有取舍的勇气和决心。先记"<span class="font-medium text-primary-600 dark:text-primary-400">少而精华</span>"的核心主干，再逐渐添加"<span class="font-medium text-primary-600 dark:text-primary-400">多而延展</span>"的枝杈。</p>
-
-                            <!-- 艾宾浩斯遗忘曲线 -->
-                            <div class="mt-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-                                <h5 class="text-center text-primary-700 dark:text-primary-400 font-medium mb-3">艾宾浩斯遗忘曲线</h5>
-                                <div class="flex justify-center">
-                                    <div class="relative w-full max-w-md h-64">
-                                        <!-- 遗忘曲线 SVG -->
-                                        <svg viewBox="0 0 400 300" class="w-full h-full">
-                                            <!-- 坐标轴 -->
-                                            <line x1="50" y1="250" x2="350" y2="250" stroke="#475569" stroke-width="2" />
-                                            <line x1="50" y1="50" x2="50" y2="250" stroke="#475569" stroke-width="2" />
-
-                                            <!-- 坐标轴标签 -->
-                                            <text x="200" y="280" text-anchor="middle" fill="#475569" font-size="12">时间</text>
-                                            <text x="30" y="150" text-anchor="middle" fill="#475569" font-size="12" transform="rotate(-90, 20, 150)">记忆保留率</text>
-
-                                            <!-- 曲线 -->
-                                            <path d="M50,50 C100,150 200,200 350,230" fill="none" stroke="#0ea5e9" stroke-width="3" class="dark:stroke-primary-400" />
-
-                                            <!-- 复习点标记 -->
-                                            <circle cx="100" cy="150" r="5" fill="#ef4444" />
-                                            <circle cx="170" cy="180" r="5" fill="#ef4444" />
-                                            <circle cx="250" cy="210" r="5" fill="#ef4444" />
-
-                                            <!-- 标记说明 -->
-                                            <text x="100" y="130" text-anchor="middle" fill="#ef4444" font-size="10">复习点1</text>
-                                            <text x="170" y="160" text-anchor="middle" fill="#ef4444" font-size="10">复习点2</text>
-                                            <text x="250" y="190" text-anchor="middle" fill="#ef4444" font-size="10">复习点3</text>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 方法五 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.5s;">
-                            <div class="flex items-start mb-3">
-                                <div class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">5</div>
-                                <h4 class="text-lg font-bold">"刻意练习"</h4>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-3">为什么做了很多题，成绩还在原地踏步？题海战术最大的问题在于你会用很长时间来做已经会做的题目，而对于没有充分掌握的重难点知识却练习不足。</p>
-                            <p class="text-gray-700 dark:text-gray-300 mb-3">为了解决这些问题，心理学家艾里克森提出了一种方法，叫作"<span class="font-medium">刻意练习</span>"，即"<span class="font-medium text-primary-600 dark:text-primary-400">多花时间在薄弱环节，持续关注重难点</span>"。</p>
-                            <p class="text-gray-700 dark:text-gray-300">集中力量解决一个重难点题目，不跳过任何步骤，确保对每个步骤都有深层次的理解，尤其是问题中最困扰你的那个部分。</p>
-
-                            <!-- 学习区域图示 -->
-                            <div class="mt-4 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 rounded-lg p-4">
-                                <h5 class="text-center text-primary-700 dark:text-primary-400 font-medium mb-3">舒适区、学习区、恐慌区</h5>
-                                <div class="flex justify-center">
-                                    <div class="relative w-full max-w-md h-64">
-                                        <!-- 区域图示 SVG -->
-                                        <svg viewBox="0 0 400 300" class="w-full h-full">
-                                            <!-- 舒适区 -->
-                                            <circle cx="200" cy="150" r="60" fill="#bae6fd" class="dark:fill-primary-900" />
-                                            <text x="200" y="150" text-anchor="middle" fill="#0c4a6e" class="dark:fill-primary-200" font-size="14">舒适区</text>
-
-                                            <!-- 学习区 -->
-                                            <circle cx="200" cy="150" r="120" fill="#7dd3fc" fill-opacity="0.5" class="dark:fill-primary-800 dark:fill-opacity-0.5" />
-                                            <text x="200" y="90" text-anchor="middle" fill="#0c4a6e" class="dark:fill-primary-200" font-size="14">学习区</text>
-
-                                            <!-- 恐慌区 -->
-                                            <circle cx="200" cy="150" r="180" fill="#e0f2fe" fill-opacity="0.5" class="dark:fill-primary-950 dark:fill-opacity-0.3" />
-                                            <text x="200" y="30" text-anchor="middle" fill="#0c4a6e" class="dark:fill-primary-200" font-size="14">恐慌区</text>
-
-                                            <!-- 学习区指示 -->
-                                            <text x="200" y="240" text-anchor="middle" fill="#0ea5e9" class="dark:fill-primary-400" font-weight="bold" font-size="16">在学习区，精准发力！</text>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- 方法六 -->
-                        <div class="bg-gray-50 dark:bg-gray-700 rounded-lg p-5 card-hover fade-in" style="animation-delay: 0.6s;">
-                            <div class="flex items-start mb-3">
-                                <div class="flex-shrink-0 bg-primary-500 dark:bg-primary-600 text-white font-bold rounded-full w-8 h-8 flex items-center justify-center mr-3">6</div>
-                                <h4 class="text-lg font-bold">调整积极情绪</h4>
-                            </div>
-                            <p class="text-gray-700 dark:text-gray-300 mb-4">有研究表明，不带负面情绪地持续做某件事，当积累一定时间后，自然就会对这件事产生兴趣。对读书学习产生兴趣的方法，就是每天拿出固定的一段时间，不带任何负面情绪地读书学习，时间久了就会喜欢读书学习。</p>
-                            <div class="bg-primary-50 dark:bg-gray-600 p-4 rounded-lg">
-                                <p class="text-gray-700 dark:text-gray-300 italic">作家赫尔曼·黑塞说："世界上任何书籍都不能带给你好运，但是它们能让你悄悄成为你自己。"</p>
+                            <div class="text-center">
+                                <div class="text-4xl mb-2">🎯</div>
+                                <h4 class="font-semibold text-gray-800 dark:text-white">成功</h4>
                             </div>
                         </div>
                     </div>
-
-                    <!-- 寄语 -->
-                    <div class="mt-8 bg-primary-100 dark:bg-primary-900 p-6 rounded-lg text-center fade-in" style="animation-delay: 0.7s;">
-                        <h3 class="text-xl font-bold mb-4 text-primary-700 dark:text-primary-300">寄语</h3>
-                        <p class="text-gray-700 dark:text-gray-300 mb-4">人生中的任何问题都是自己成长的机会。</p>
-                        <p class="text-gray-700 dark:text-gray-300">无论我们遇到什么困难和挑战，都要勇敢地去面对、去处理。只有这样，我们才能在这个过程中不断成长、不断进步。</p>
-
-                        <div class="mt-6 text-2xl font-bold text-primary-600 dark:text-primary-400">你永远比你想象的还要强大！</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 离别寄语 -->
+        <section class="py-20 px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12 gradient-text">离别寄语</h2>
+                
+                <div class="bg-white dark:bg-gray-800 rounded-3xl p-8 md:p-12 shadow-xl">
+                    <i class="fas fa-quote-left text-4xl text-gray-300 dark:text-gray-600 mb-6"></i>
+                    <p class="text-xl text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
+                        面对着岁月摆下的筵席，我们相互微笑殷勤地劝酒，仿佛所有没说的爱恋与不舍，都收藏在语句的背后。因为我们都已明白，此去再也没有比手中这一杯更醇更美的酒了。
+                    </p>
+                    <div class="h-1 w-20 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-6"></div>
+                    <p class="text-lg text-gray-600 dark:text-gray-400">
+                        六月天空晴朗，毕业钟声敲响；不舍可爱的同窗，难忘尊敬的师长，作别熟悉面庞。迈向成功殿堂，踏着前进的曙光，迎接明日的辉煌。
+                    </p>
+                </div>
+                
+                <div class="mt-12">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Happiness Forever</h3>
+                    <div class="flex justify-center space-x-4">
+                        <i class="fas fa-heart text-3xl text-red-400 animate-pulse"></i>
+                        <i class="fas fa-star text-3xl text-yellow-400 animate-pulse delay-100"></i>
+                        <i class="fas fa-sun text-3xl text-orange-400 animate-pulse delay-200"></i>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-
+    
     <!-- 页脚 -->
-    <footer class="bg-white dark:bg-gray-800 shadow-md py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <h2 class="text-xl font-bold text-gray-900 dark:text-white flex items-center">
-                        <span class="material-icons text-primary-600 dark:text-primary-400 mr-2">psychology</span>
-                        学习，是需要动脑的！
-                    </h2>
-                    <p class="text-gray-600 dark:text-gray-400 mt-2">智慧源于思考，思考源于学习</p>
-                </div>
-                <div class="text-center md:text-right">
-                    <div class="text-gray-700 dark:text-gray-300 font-medium">
-                        作者：elon
+    <footer class="bg-gray-900 text-white py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-8">
+                <h3 class="text-2xl font-bold mb-4">毕业纪念册</h3>
+                <p class="text-gray-400">珍藏青春回忆，展望美好未来</p>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <div class="mb-4 md:mb-0">
+                        <p class="text-sm text-gray-400">
+                            <i class="fas fa-user mr-2"></i>作者：elon
+                        </p>
                     </div>
-                    <div class="text-gray-500 dark:text-gray-400 text-sm mt-1">
-                        © 2025 版权所有
+                    <div class="text-sm text-gray-400">
+                        <p><i class="far fa-copyright mr-2"></i>2024 版权所有</p>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- JavaScript -->
+    
     <script>
-        // 检查系统主题偏好并设置初始主题
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.documentElement.classList.add('dark');
-        }
-
         // 主题切换功能
-        document.getElementById('themeToggle').addEventListener('click', function() {
-            document.documentElement.classList.toggle('dark');
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // 检查系统主题偏好
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            html.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
         });
-
-        // 移动端菜单切换
-        document.getElementById('mobileMenuButton').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        // 点击移动端菜单项后关闭菜单
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', function() {
-                document.getElementById('mobileMenu').classList.add('hidden');
+        
+        // 平滑滚动到指定部分
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        // 滚动时的视差效果
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const decorations = document.querySelectorAll('.bg-decoration');
+            
+            decorations.forEach((decoration, index) => {
+                const speed = index === 0 ? 0.5 : 0.3;
+                decoration.style.transform = `translateY(${scrolled * speed}px)`;
             });
         });
-
-        // 添加滚动动画
-        document.addEventListener('DOMContentLoaded', function() {
-            // 获取所有需要添加淡入动画的元素
-            const fadeElements = document.querySelectorAll('.fade-in');
-
-            // 监听滚动事件
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // 元素进入视口时应用动画
-                        entry.target.style.animationPlayState = 'running';
-                        // 不再监听该元素
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.1 // 当元素有10%进入视口时触发
-            });
-
-            // 开始监听元素
-            fadeElements.forEach(element => {
-                element.style.animationPlayState = 'paused';
-                observer.observe(element);
-            });
-        });
-
-        // 平滑滚动到锚点
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70, // 考虑顶部导航栏的高度
-                        behavior: 'smooth'
-                    });
+        
+        // 元素进入视口时的动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    observer.unobserve(entry.target);
                 }
             });
+        }, observerOptions);
+        
+        // 观察所有需要动画的元素
+        document.querySelectorAll('section > div').forEach(el => {
+            observer.observe(el);
         });
-
-        // 懒加载图像
-        document.addEventListener('DOMContentLoaded', function() {
-            const lazyLoad = function() {
-                const lazyImages = document.querySelectorAll('[data-src]');
-
-                lazyImages.forEach(img => {
-                    if (img.getBoundingClientRect().top <= window.innerHeight && img.getBoundingClientRect().bottom >= 0) {
-                        img.src = img.dataset.src;
-                        img.removeAttribute('data-src');
-                    }
-                });
-
-                if (lazyImages.length === 0) {
-                    window.removeEventListener('scroll', lazyLoad);
-                }
-            };
-
-            lazyLoad();
-            window.addEventListener('scroll', lazyLoad);
+        
+        // 导航栏滚动效果
+        let lastScrollTop = 0;
+        const nav = document.querySelector('nav');
+        
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+            
+            lastScrollTop = scrollTop;
         });
     </script>
 </body>
